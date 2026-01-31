@@ -1,0 +1,2253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinancePro | Business Finance Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --dark: #0f172a;
+            --nav-dark: #020617;
+            --light: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+            --radius-sm: 8px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background-color: #f1f5f9;
+            color: #334155;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* Login Page Styles */
+        .login-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: var(--dark);
+            padding: 1rem;
+        }
+        
+        .login-card {
+            background: var(--nav-dark);
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.8s ease;
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .login-logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .login-logo i {
+            color: var(--primary);
+        }
+        
+        .login-subtitle {
+            color: #94a3b8;
+            font-size: 1rem;
+        }
+        
+        .login-form {
+            margin-top: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #cbd5e1;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid #334155;
+            background-color: #1e293b;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+        
+        .form-control::placeholder {
+            color: #64748b;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 0.85rem;
+            border-radius: var(--radius-sm);
+            border: none;
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .login-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+        
+        .login-message {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            border-radius: var(--radius-sm);
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
+        
+        .login-message.error {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            display: block;
+        }
+        
+        .login-message.success {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: #86efac;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            display: block;
+        }
+        
+        .login-footer {
+            margin-top: 2rem;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+        
+        /* Dashboard Container */
+        .dashboard-container {
+            display: none;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background-color: var(--nav-dark);
+            color: white;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-sm);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        .nav-links a i {
+            font-size: 1.1rem;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #cbd5e1;
+            font-weight: 500;
+        }
+        
+        .user-role {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .page-header {
+            margin-bottom: 2rem;
+        }
+        
+        .page-header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .page-header p {
+            color: var(--secondary);
+            margin-top: 0.5rem;
+        }
+        
+        /* Cards */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: 0 4px 16px var(--shadow);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+        }
+        
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Dashboard Cards */
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .in-icon {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+        
+        .out-icon {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+        }
+        
+        .balance-icon {
+            background-color: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0.5rem 0;
+        }
+        
+        .in-value {
+            color: var(--success);
+        }
+        
+        .out-value {
+            color: var(--danger);
+        }
+        
+        .balance-value {
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            color: var(--secondary);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        /* Forms */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: white;
+            color: var(--dark);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #475569;
+        }
+        
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #0da271;
+        }
+        
+        .btn-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #dc2626;
+        }
+        
+        /* Table */
+        .table-responsive {
+            overflow-x: auto;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .data-table th {
+            background-color: #f8fafc;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--dark);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .data-table tr:hover {
+            background-color: #f8fafc;
+        }
+        
+        .badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .badge-in {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+        
+        .badge-out {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+        }
+        
+        /* Monthly Section */
+        .month-selector {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .month-btn {
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            color: var(--secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .month-btn:hover {
+            background-color: #f1f5f9;
+        }
+        
+        /* Load More Button */
+        .load-more {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        /* Export Section */
+        .export-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        /* Page Content */
+        .page-content {
+            display: none;
+        }
+        
+        .page-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--nav-dark);
+            color: #cbd5e1;
+            padding: 1.5rem;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        /* Quick Stats */
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .quick-stat {
+            background-color: var(--card-bg);
+            border-radius: var(--radius-sm);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid var(--border);
+        }
+        
+        .quick-stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .quick-stat-info h4 {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            margin-bottom: 0.25rem;
+        }
+        
+        .quick-stat-info p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 992px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--nav-dark);
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 0.5rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .nav-links a {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .main-content {
+                padding: 1.5rem;
+            }
+            
+            .dashboard-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .month-selector {
+                flex-wrap: wrap;
+            }
+            
+            .stat-value {
+                font-size: 2rem;
+            }
+            
+            .quick-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .login-card {
+                padding: 2rem 1.5rem;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+        
+        .mt-1 { margin-top: 0.5rem; }
+        .mt-2 { margin-top: 1rem; }
+        .mt-3 { margin-top: 1.5rem; }
+        .mt-4 { margin-top: 2rem; }
+        .mb-1 { margin-bottom: 0.5rem; }
+        .mb-2 { margin-bottom: 1rem; }
+        .mb-3 { margin-bottom: 1.5rem; }
+        .mb-4 { margin-bottom: 2rem; }
+        .ml-1 { margin-left: 0.5rem; }
+        .ml-2 { margin-left: 1rem; }
+        .ml-3 { margin-left: 1.5rem; }
+        .ml-4 { margin-left: 2rem; }
+        .mr-1 { margin-right: 0.5rem; }
+        .mr-2 { margin-right: 1rem; }
+        .mr-3 { margin-right: 1.5rem; }
+        .mr-4 { margin-right: 2rem; }
+        
+        .d-none { display: none; }
+        .d-block { display: block; }
+        .d-flex { display: flex; }
+        
+        .w-100 { width: 100%; }
+        
+        /* Print Styles */
+        @media print {
+            .navbar, .footer, .no-print {
+                display: none !important;
+            }
+            
+            .main-content {
+                padding: 0;
+            }
+            
+            .card {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div class="login-container" id="loginContainer">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="login-logo">
+                    <i class="fas fa-chart-line"></i>
+                    <span>FinancePro</span>
+                </div>
+                <p class="login-subtitle">Business Finance Management System</p>
+            </div>
+            
+            <div class="login-form">
+                <div class="form-group">
+                    <label class="form-label" for="username">Username</label>
+                    <input type="text" id="username" class="form-control" placeholder="Enter your username" autocomplete="username">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="Enter your password" autocomplete="current-password">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="role">Login As</label>
+                    <select id="role" class="form-control">
+                        <option value="user">Standard User</option>
+                        <option value="admin">Administrator</option>
+                    </select>
+                </div>
+                
+                <button class="login-btn" onclick="login()">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login to Dashboard
+                </button>
+                
+                <div id="loginMessage" class="login-message"></div>
+            </div>
+            
+            <div class="login-footer">
+             <!--   <p>Demo Credentials:</p>
+                <p>Admin: admin / admin123 | User: user / user123</p> -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Dashboard Container -->
+    <div class="dashboard-container" id="dashboardContainer">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-chart-line logo-icon"></i>
+                <span>Finance MGMT</span>
+            </div>
+            
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="active" data-page="dashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" data-page="add-entry">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Add Entry</span>
+                </a>
+                <a href="#" data-page="entries">
+                    <i class="fas fa-list"></i>
+                    <span>Entries</span>
+                </a>
+                <a href="#" data-page="monthly">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Monthly</span>
+                </a>
+                <a href="#" data-page="export">
+                    <i class="fas fa-file-export"></i>
+                    <span>Export</span>
+                </a>
+                <div class="user-info">
+                    <span id="currentUser">User</span>
+                    <span class="user-role" id="currentRole">User</span>
+                </div>
+                <a href="#" data-page="logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </nav>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Page -->
+            <div class="page-content active" id="dashboard-page">
+                <div class="page-header">
+                    <h1>Business Dashboard</h1>
+                    <p>Overview of financial transactions</p>
+                </div>
+                
+                <div class="quick-stats">
+                    <div class="quick-stat">
+                        <div class="quick-stat-icon in-icon">
+                            <i class="fas fa-arrow-down"></i>
+                        </div>
+                        <div class="quick-stat-info">
+                            <h4>Today's Income</h4>
+                            <p id="today-income">₹0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="quick-stat">
+                        <div class="quick-stat-icon out-icon">
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                        <div class="quick-stat-info">
+                            <h4>Today's Expenses</h4>
+                            <p id="today-expense">₹0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="quick-stat">
+                        <div class="quick-stat-icon balance-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="quick-stat-info">
+                            <h4>Current Balance</h4>
+                            <p id="current-balance">₹0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="quick-stat">
+                        <div class="quick-stat-icon" style="background-color: rgba(245, 158, 11, 0.1); color: var(--warning);">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <div class="quick-stat-info">
+                            <h4>Monthly Profit</h4>
+                            <p id="monthly-profit">₹0</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-cards">
+                    <div class="card stat-card" onclick="showPage('add-entry-page')">
+                        <div class="stat-icon in-icon">
+                            <i class="fas fa-arrow-down"></i>
+                        </div>
+                        <div class="stat-value in-value" id="total-income">₹12,850</div>
+                        <div class="stat-label">Total Income</div>
+                        <p class="mt-2">Last 30 days</p>
+                    </div>
+                    
+                    <div class="card stat-card" onclick="showPage('add-entry-page')">
+                        <div class="stat-icon out-icon">
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                        <div class="stat-value out-value" id="total-expenses">₹8,430</div>
+                        <div class="stat-label">Total Expenses</div>
+                        <p class="mt-2">Last 30 days</p>
+                    </div>
+                    
+                    <div class="card stat-card" onclick="showPage('monthly-page')">
+                        <div class="stat-icon balance-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="stat-value balance-value" id="net-profit">₹4,420</div>
+                        <div class="stat-label">Net Profit</div>
+                        <p class="mt-2">Last 30 days</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-history"></i>
+                        <span>Recent Transactions</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Description</th>
+                                    <th>Category</th>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recent-transactions">
+                                <!-- Recent transactions will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center mt-3">
+                        <!---- <button class="btn btn-secondary" onclick="showPage('entries-page')">
+                            <i class="fas fa-list"></i>
+                          View All Entries 
+                        </button> --->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Add Entry Page -->
+            <div class="page-content" id="add-entry-page">
+                <div class="page-header">
+                    <h1>Add New Entry</h1>
+                    <p>Record a new income or expense transaction</p>
+                </div>
+                
+                <div class="card">
+                    <form id="entry-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="entry-type">Transaction Type *</label>
+                                <select id="entry-type" class="form-control" required>
+                                    <option value="">Select Type</option>
+                                    <option value="in">Income</option>
+                                    <option value="out">Expense</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="amount">Amount (₹) *</label>
+                                <input type="number" id="amount" class="form-control" placeholder="0.00" step="0.01" min="0" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="date">Date *</label>
+                                <input type="date" id="date" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="category">Category *</label>
+                                <select id="category" class="form-control" required>
+                                    <option value="">Select Category</option>
+                                    <option value="vehicle">Vehicle</option>
+                                    <option value="supplies">Supplies</option>
+                                    <option value="salary">Salary</option>
+                                    <option value="home">Home</option>
+                                    <option value="electronics">Electronics</option>
+                                    <option value="self">Self</option>
+                                    <option value="fuel">Fuel</option>
+                                    <option value="travel">Travel</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" class="form-control" rows="3" placeholder="Enter transaction details..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="payment-method">Payment Method</label>
+                            <select id="payment-method" class="form-control">
+                                <option value="cash">Cash</option>
+                                <option value="bank_transfer">Bank Transfer</option>
+                                <option value="credit_card">Credit Card</option>
+                                <option value="upi">UPI</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i>
+                                Save Entry
+                            </button>
+                            <button type="button" id="reset-form" class="btn btn-secondary">
+                                <i class="fas fa-redo"></i>
+                                Reset Form
+                            </button>
+                            <button type="button" class="btn btn-success" onclick="showPage('dashboard-page')">
+                                <i class="fas fa-tachometer-alt"></i>
+                                Back to Dashboard
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Entries Page -->
+            <div class="page-content" id="entries-page">
+                <div class="page-header">
+                    <h1>All Entries</h1>
+                    <p>View and filter your transaction history</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-filter"></i>
+                        <span>Filter Options</span>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="filter-date">Date Range</label>
+                            <select id="filter-date" class="form-control">
+                                <option value="all">All Time</option>
+                                <option value="today">Today</option>
+                                <option value="week">This Week</option>
+                                <option value="month" selected>This Month</option>
+                                <option value="quarter">This Quarter</option>
+                                <option value="year">This Year</option>
+                                <option value="custom">Custom Range</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="filter-type">Transaction Type</label>
+                            <select id="filter-type" class="form-control">
+                                <option value="all">All Types</option>
+                                <option value="in">Income</option>
+                                <option value="out">Expense</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="filter-category">Category</label>
+                            <select id="filter-category" class="form-control">
+                                <option value="">All Category</option>
+                                    <option value="vehicle">Vehicle</option>
+                                    <option value="supplies">Supplies</option>
+                                    <option value="salary">Salary</option>
+                                    <option value="home">Home</option>
+                                    <option value="electronics">Electronics</option>
+                                    <option value="self">Self</option>
+                                    <option value="fuel">Fuel</option>
+                                    <option value="travel">Travel</option>
+                                    <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-grid d-none" id="custom-date-range">
+                        <div class="form-group">
+                            <label for="start-date">Start Date</label>
+                            <input type="date" id="start-date" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="end-date">End Date</label>
+                            <input type="date" id="end-date" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="mt-2">
+                        <button id="apply-filter" class="btn btn-primary">
+                            <i class="fas fa-filter"></i>
+                            Apply Filters
+                        </button>
+                        <button id="reset-filter" class="btn btn-secondary">
+                            <i class="fas fa-redo"></i>
+                            Reset Filters
+                        </button>
+                        <button id="delete-all" class="btn btn-danger">
+                            <i class="fas fa-trash"></i>
+                            Delete All Entries
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-list"></i>
+                        <span>Transaction History</span>
+                        <span id="entries-count" class="ml-2" style="color: var(--secondary); font-size: 0.9rem;"></span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Description</th>
+                                    <th>Category</th>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="entries-table-body">
+                                <!-- Entries will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="load-more">
+                        <button id="load-more-btn" class="btn btn-secondary">
+                            <i class="fas fa-arrow-down"></i>
+                            Load More Entries
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Monthly Page -->
+            <div class="page-content" id="monthly-page">
+                <div class="page-header">
+                    <h1>Monthly Profit & Loss</h1>
+                    <p>Analyze your financial performance by month</p>
+                </div>
+                
+                <div class="card">
+                    <div class="month-selector">
+                        <button id="prev-month" class="month-btn">
+                            <i class="fas fa-chevron-left"></i>
+                            Previous
+                        </button>
+                        <h2 id="current-month">June 2023</h2>
+                        <button id="next-month" class="month-btn">
+                            Next
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="dashboard-cards">
+                        <div class="card stat-card">
+                            <div class="stat-icon in-icon">
+                                <i class="fas fa-arrow-down"></i>
+                            </div>
+                            <div class="stat-value in-value" id="monthly-income">₹0</div>
+                            <div class="stat-label">Monthly Income</div>
+                        </div>
+                        
+                        <div class="card stat-card">
+                            <div class="stat-icon out-icon">
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+                            <div class="stat-value out-value" id="monthly-expenses">₹0</div>
+                            <div class="stat-label">Monthly Expenses</div>
+                        </div>
+                        
+                        <div class="card stat-card">
+                            <div class="stat-icon balance-icon">
+                                <i class="fas fa-wallet"></i>
+                            </div>
+                            <div class="stat-value balance-value" id="monthly-profit-display">₹0</div>
+                            <div class="stat-label">Monthly Profit</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <h3 class="mb-2">Monthly Breakdown</h3>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Category</th>
+                                        <th>Income</th>
+                                        <th>Expenses</th>
+                                        <th>Net</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="monthly-breakdown">
+                                    <!-- Monthly breakdown will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Export Page -->
+            <div class="page-content" id="export-page">
+                <div class="page-header">
+                    <h1>Export Data</h1>
+                    <p>Download your financial data in various formats</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-file-export"></i>
+                        <span>Export Options</span>
+                    </div>
+                    
+                    <p>Select the data range and format you want to export:</p>
+                    
+                    <div class="form-grid mt-3">
+                        <div class="form-group">
+                            <label for="export-range">Date Range</label>
+                            <select id="export-range" class="form-control">
+                                <option value="all">All Time</option>
+                                <option value="month" selected>Current Month</option>
+                                <option value="quarter">Current Quarter</option>
+                                <option value="year">Current Year</option>
+                                <option value="custom">Custom Range</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="export-format">File Format</label>
+                            <select id="export-format" class="form-control">
+                                <option value="csv" selected>CSV (Excel)</option>
+                                <option value="json">JSON</option>
+                                <option value="pdf">PDF</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-grid d-none" id="export-custom-range">
+                        <div class="form-group">
+                            <label for="export-start-date">Start Date</label>
+                            <input type="date" id="export-start-date" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="export-end-date">End Date</label>
+                            <input type="date" id="export-end-date" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="export-options">
+                        <button id="export-btn" class="btn btn-success">
+                            <i class="fas fa-file-csv"></i>
+                            Export Data
+                        </button>
+                        
+                        <button id="print-btn" class="btn btn-secondary">
+                            <i class="fas fa-print"></i>
+                            Print Report
+                        </button>
+                        
+                        <button id="preview-btn" class="btn btn-primary">
+                            <i class="fas fa-eye"></i>
+                            Preview Data
+                        </button>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h4>Export Instructions</h4>
+                        <ul style="padding-left: 1.5rem;">
+                            <li class="mb-1">CSV format is compatible with Microsoft Excel, Google Sheets, and other spreadsheet software.</li>
+                            <li class="mb-1">JSON format is useful for data integration with other applications.</li>
+                            <li class="mb-1">PDF format creates a printable report with proper formatting.</li>
+                            <li>Your exported data will include all transaction details within the selected date range.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card mt-3" id="preview-container" style="display: none;">
+                    <div class="card-title">
+                        <i class="fas fa-eye"></i>
+                        <span>Data Preview</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Description</th>
+                                    <th>Category</th>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody id="preview-table-body">
+                                <!-- Preview data will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Logout Page -->
+            <div class="page-content" id="logout-page">
+                <div class="card text-center" style="max-width: 500px; margin: 4rem auto;">
+                    <div class="card-title">
+                        <i class="fas fa-sign-out-alt" style="font-size: 3rem; color: var(--secondary);"></i>
+                        <h2>Logout</h2>
+                    </div>
+                    
+                    <p class="mb-3">Are you sure you want to logout from FinancePro?</p>
+                    
+                    <div class="mt-3">
+                        <button id="confirm-logout" class="btn btn-danger">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Yes, Logout
+                        </button>
+                        <button id="cancel-logout" class="btn btn-secondary">
+                            <i class="fas fa-times"></i>
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <p>FinancePro Dashboard &copy; 2025 | Modern Business Financial Management</p>
+            <p class="mt-1">All data is securely stored and protected.</p>
+        </footer>
+    </div>
+
+    <script>
+        // User database
+        const users = {
+            admin: { password: "admin123", role: "admin", name: "Administrator" },
+            user: { password: "user123", role: "user", name: "Standard User" },
+            demo: { password: "demo123", role: "user", name: "Demo User" }
+        };
+        
+        // Application state
+        let currentUser = null;
+        let currentRole = null;
+        let entries = [];
+        let filteredEntries = [];
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+        let currentPage = 1;
+        const entriesPerPage = 10;
+        
+        // DOM Elements
+        const loginContainer = document.getElementById('loginContainer');
+        const dashboardContainer = document.getElementById('dashboardContainer');
+        const loginMessage = document.getElementById('loginMessage');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navLinks');
+        const pageContents = document.querySelectorAll('.page-content');
+        const currentUserElement = document.getElementById('currentUser');
+        const currentRoleElement = document.getElementById('currentRole');
+        
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is already logged in
+            const loggedIn = sessionStorage.getItem('loggedIn');
+            const username = sessionStorage.getItem('username');
+            const role = sessionStorage.getItem('role');
+            
+            if (loggedIn === 'true' && username && role) {
+                // User is already logged in
+                currentUser = username;
+                currentRole = role;
+                initializeDashboard();
+            } else {
+                // Show login page
+                loginContainer.style.display = 'flex';
+                dashboardContainer.style.display = 'none';
+            }
+            
+            // Set today's date as default in forms
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('date').value = today;
+            document.getElementById('start-date').value = today;
+            document.getElementById('end-date').value = today;
+            document.getElementById('export-start-date').value = today;
+            document.getElementById('export-end-date').value = today;
+            
+            // Load entries from localStorage
+            loadEntriesFromStorage();
+            
+            // Initialize dashboard data
+            updateDashboardStats();
+            updateRecentTransactions();
+            updateMonthlyDisplay();
+        });
+        
+        // Login function
+        function login() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const role = document.getElementById('role').value;
+            
+            // Reset message
+            loginMessage.className = 'login-message';
+            loginMessage.textContent = '';
+            
+            // Validate inputs
+            if (!username || !password) {
+                showLoginMessage('Please enter both username and password', 'error');
+                return;
+            }
+            
+            // Check credentials
+            if (users[username] && users[username].password === password && users[username].role === role) {
+                // Successful login
+                currentUser = username;
+                currentRole = role;
+                
+                // Store login state
+                sessionStorage.setItem('loggedIn', 'true');
+                sessionStorage.setItem('username', username);
+                sessionStorage.setItem('role', role);
+                sessionStorage.setItem('name', users[username].name);
+                
+                // Show success message
+                showLoginMessage('Login successful! Redirecting...', 'success');
+                
+                // Initialize dashboard after a short delay
+                setTimeout(() => {
+                    initializeDashboard();
+                }, 1000);
+            } else {
+                // Invalid credentials
+                showLoginMessage('Invalid username, password, or role selected', 'error');
+            }
+        }
+        
+        function showLoginMessage(message, type) {
+            loginMessage.textContent = message;
+            loginMessage.className = `login-message ${type}`;
+        }
+        
+        function initializeDashboard() {
+            // Hide login, show dashboard
+            loginContainer.style.display = 'none';
+            dashboardContainer.style.display = 'flex';
+            
+            // Set user info
+            const name = sessionStorage.getItem('name') || currentUser;
+            currentUserElement.textContent = name;
+            currentRoleElement.textContent = currentRole.charAt(0).toUpperCase() + currentRole.slice(1);
+            
+            // Update all dashboard data
+            updateDashboardStats();
+            updateRecentTransactions();
+            updateMonthlyDisplay();
+            loadEntriesTable();
+            
+            // Add welcome notification
+            showNotification(`Welcome back, ${name}!`, 'success');
+        }
+        
+        function logout() {
+            // Clear session
+            sessionStorage.clear();
+            
+            // Show login page
+            loginContainer.style.display = 'flex';
+            dashboardContainer.style.display = 'none';
+            
+            // Reset login form
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('role').value = 'user';
+            
+            // Show logout message
+            showLoginMessage('You have been logged out successfully', 'success');
+        }
+        
+        // Navigation functionality
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Get the page to show
+                const pageId = this.getAttribute('data-page');
+                
+                // Handle logout separately
+                if (pageId === 'logout') {
+                    showPage('logout-page');
+                    toggleMobileMenu();
+                    return;
+                }
+                
+                // Update active nav link
+                navLinks.forEach(navLink => navLink.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show the selected page
+                showPage(`${pageId}-page`);
+                
+                // Toggle mobile menu if open
+                toggleMobileMenu();
+            });
+        });
+        
+        // Mobile menu toggle
+        mobileToggle.addEventListener('click', toggleMobileMenu);
+        
+        function toggleMobileMenu() {
+            navMenu.classList.toggle('active');
+            mobileToggle.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        }
+        
+        // Show selected page
+        function showPage(pageId) {
+            pageContents.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            document.getElementById(pageId).classList.add('active');
+            
+            // Special handling for certain pages
+            if (pageId === 'entries-page') {
+                loadEntriesTable();
+            } else if (pageId === 'monthly-page') {
+                updateMonthlyDisplay();
+            } else if (pageId === 'dashboard-page') {
+                updateDashboardStats();
+                updateRecentTransactions();
+            }
+        }
+        
+        // Entry form handling
+        const entryForm = document.getElementById('entry-form');
+        const resetFormBtn = document.getElementById('reset-form');
+        
+        entryForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const type = document.getElementById('entry-type').value;
+            const amount = parseFloat(document.getElementById('amount').value);
+            const date = document.getElementById('date').value;
+            const category = document.getElementById('category').value;
+            const description = document.getElementById('description').value;
+            const paymentMethod = document.getElementById('payment-method').value;
+            
+            // Validate inputs
+            if (!type || !amount || !date || !category) {
+                showNotification('Please fill in all required fields', 'error');
+                return;
+            }
+            
+            if (amount <= 0) {
+                showNotification('Amount must be greater than 0', 'error');
+                return;
+            }
+            
+            // Create entry object
+            const entry = {
+                id: Date.now(),
+                type: type,
+                amount: amount,
+                date: date,
+                category: category,
+                description: description || 'No description',
+                paymentMethod: paymentMethod,
+                createdBy: currentUser,
+                createdAt: new Date().toISOString()
+            };
+            
+            // Add to entries array
+            entries.unshift(entry);
+            
+            // Save to localStorage
+            saveEntriesToStorage();
+            
+            // Reset form
+            this.reset();
+            document.getElementById('date').value = new Date().toISOString().split('T')[0];
+            document.getElementById('payment-method').value = 'cash';
+            
+            // Update UI
+            updateDashboardStats();
+            updateRecentTransactions();
+            
+            // Show success message
+            showNotification(`Entry added successfully: ${formatINR(amount)} ${type === 'in' ? 'income' : 'expense'}`, 'success');
+            
+            // Go back to dashboard
+            showPage('dashboard-page');
+            navLinks.forEach(navLink => navLink.classList.remove('active'));
+            document.querySelector('[data-page="dashboard"]').classList.add('active');
+        });
+        
+        resetFormBtn.addEventListener('click', function() {
+            entryForm.reset();
+            document.getElementById('date').value = new Date().toISOString().split('T')[0];
+            document.getElementById('payment-method').value = 'cash';
+        });
+        
+        // Entries page functionality
+        const applyFilterBtn = document.getElementById('apply-filter');
+        const resetFilterBtn = document.getElementById('reset-filter');
+        const deleteAllBtn = document.getElementById('delete-all');
+        const loadMoreBtn = document.getElementById('load-more-btn');
+        const filterDateSelect = document.getElementById('filter-date');
+        const entriesCountElement = document.getElementById('entries-count');
+        
+        // Show/hide custom date range
+        filterDateSelect.addEventListener('change', function() {
+            const customRangeDiv = document.getElementById('custom-date-range');
+            if (this.value === 'custom') {
+                customRangeDiv.classList.remove('d-none');
+                customRangeDiv.classList.add('d-flex');
+            } else {
+                customRangeDiv.classList.remove('d-flex');
+                customRangeDiv.classList.add('d-none');
+            }
+        });
+        
+        // Apply filters
+        applyFilterBtn.addEventListener('click', function() {
+            currentPage = 1;
+            applyFilters();
+        });
+        
+        // Reset filters
+        resetFilterBtn.addEventListener('click', function() {
+            document.getElementById('filter-date').value = 'month';
+            document.getElementById('filter-type').value = 'all';
+            document.getElementById('filter-category').value = 'all';
+            document.getElementById('start-date').value = new Date().toISOString().split('T')[0];
+            document.getElementById('end-date').value = new Date().toISOString().split('T')[0];
+            document.getElementById('custom-date-range').classList.remove('d-flex');
+            document.getElementById('custom-date-range').classList.add('d-none');
+            
+            currentPage = 1;
+            applyFilters();
+        });
+        
+        // Delete all entries
+        deleteAllBtn.addEventListener('click', function() {
+            if (confirm('Are you sure you want to delete ALL entries? This action cannot be undone.')) {
+                entries = [];
+                saveEntriesToStorage();
+                loadEntriesTable();
+                updateDashboardStats();
+                updateRecentTransactions();
+                showNotification('All entries have been deleted', 'success');
+            }
+        });
+        
+        // Load more entries
+        loadMoreBtn.addEventListener('click', function() {
+            currentPage++;
+            loadEntriesTable(true);
+        });
+        
+        function applyFilters() {
+            const dateFilter = document.getElementById('filter-date').value;
+            const typeFilter = document.getElementById('filter-type').value;
+            const categoryFilter = document.getElementById('filter-category').value;
+            const startDate = document.getElementById('start-date').value;
+            const endDate = document.getElementById('end-date').value;
+            
+            filteredEntries = entries.filter(entry => {
+                // Type filter
+                if (typeFilter !== 'all' && entry.type !== typeFilter) return false;
+                
+                // Category filter
+                if (categoryFilter !== 'all' && entry.category !== categoryFilter) return false;
+                
+                // Date filter
+                const entryDate = new Date(entry.date);
+                
+                if (dateFilter === 'today') {
+                    const today = new Date().toDateString();
+                    return entryDate.toDateString() === today;
+                } else if (dateFilter === 'week') {
+                    const oneWeekAgo = new Date();
+                    oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+                    return entryDate >= oneWeekAgo;
+                } else if (dateFilter === 'month') {
+                    const oneMonthAgo = new Date();
+                    oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+                    return entryDate >= oneMonthAgo;
+                } else if (dateFilter === 'quarter') {
+                    const threeMonthsAgo = new Date();
+                    threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
+                    return entryDate >= threeMonthsAgo;
+                } else if (dateFilter === 'year') {
+                    const oneYearAgo = new Date();
+                    oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+                    return entryDate >= oneYearAgo;
+                } else if (dateFilter === 'custom') {
+                    const start = new Date(startDate);
+                    const end = new Date(endDate);
+                    end.setHours(23, 59, 59, 999); // Include entire end day
+                    return entryDate >= start && entryDate <= end;
+                }
+                
+                // 'all' filter
+                return true;
+            });
+            
+            // Sort by date (newest first)
+            filteredEntries.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            // Load table
+            loadEntriesTable();
+        }
+        
+        function loadEntriesTable(append = false) {
+            const tbody = document.getElementById('entries-table-body');
+            
+            if (!append) {
+                tbody.innerHTML = '';
+                currentPage = 1;
+            }
+            
+            // Calculate which entries to show
+            const startIndex = 0;
+            const endIndex = currentPage * entriesPerPage;
+            const entriesToShow = filteredEntries.length > 0 ? filteredEntries.slice(startIndex, endIndex) : entries.slice(startIndex, endIndex);
+            
+            if (entriesToShow.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="text-center" style="padding: 3rem; color: var(--secondary);">
+                            <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                            <p>No entries found</p>
+                        </td>
+                    </tr>
+                `;
+                loadMoreBtn.style.display = 'none';
+                entriesCountElement.textContent = '0 entries';
+                return;
+            }
+            
+            // Add entries to table
+            entriesToShow.forEach(entry => {
+                const row = document.createElement('tr');
+                
+                // Format date
+                const dateObj = new Date(entry.date);
+                const formattedDate = dateObj.toLocaleDateString('en-IN', { 
+                    day: '2-digit', 
+                    month: 'short', 
+                    year: 'numeric' 
+                });
+                
+                // Format amount
+                const formattedAmount = formatINR(entry.amount);
+                
+                row.innerHTML = `
+                    <td>${formattedDate}</td>
+                    <td>${entry.description}</td>
+                    <td>${entry.category}</td>
+                    <td><span class="badge ${entry.type === 'in' ? 'badge-in' : 'badge-out'}">${entry.type === 'in' ? 'IN' : 'OUT'}</span></td>
+                    <td class="${entry.type === 'in' ? 'in-value' : 'out-value'}">${formattedAmount}</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" onclick="deleteEntry(${entry.id})" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                
+                tbody.appendChild(row);
+            });
+            
+            // Update entries count
+            const totalEntries = filteredEntries.length > 0 ? filteredEntries.length : entries.length;
+            entriesCountElement.textContent = `${entriesToShow.length} of ${totalEntries} entries`;
+            
+            // Show/hide load more button
+            const totalShown = entriesToShow.length;
+            const totalAvailable = filteredEntries.length > 0 ? filteredEntries.length : entries.length;
+            loadMoreBtn.style.display = totalShown < totalAvailable ? 'block' : 'none';
+        }
+        
+        function deleteEntry(id) {
+            if (confirm('Are you sure you want to delete this entry?')) {
+                const index = entries.findIndex(entry => entry.id === id);
+                if (index !== -1) {
+                    entries.splice(index, 1);
+                    saveEntriesToStorage();
+                    applyFilters();
+                    updateDashboardStats();
+                    updateRecentTransactions();
+                    showNotification('Entry deleted successfully', 'success');
+                }
+            }
+        }
+        
+        // Monthly page functionality
+        const currentMonthEl = document.getElementById('current-month');
+        const prevMonthBtn = document.getElementById('prev-month');
+        const nextMonthBtn = document.getElementById('next-month');
+        
+        prevMonthBtn.addEventListener('click', function() {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            updateMonthlyDisplay();
+        });
+        
+        nextMonthBtn.addEventListener('click', function() {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            updateMonthlyDisplay();
+        });
+        
+        function updateMonthlyDisplay() {
+            // Update month display
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
+                               'July', 'August', 'September', 'October', 'November', 'December'];
+            currentMonthEl.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+            
+            // Calculate monthly stats
+            let monthlyIncome = 0;
+            let monthlyExpenses = 0;
+            const categoryData = {};
+            
+            entries.forEach(entry => {
+                const entryDate = new Date(entry.date);
+                if (entryDate.getMonth() === currentMonth && entryDate.getFullYear() === currentYear) {
+                    if (entry.type === 'in') {
+                        monthlyIncome += entry.amount;
+                    } else {
+                        monthlyExpenses += entry.amount;
+                    }
+                    
+                    // Track by category
+                    if (!categoryData[entry.category]) {
+                        categoryData[entry.category] = { income: 0, expenses: 0 };
+                    }
+                    
+                    if (entry.type === 'in') {
+                        categoryData[entry.category].income += entry.amount;
+                    } else {
+                        categoryData[entry.category].expenses += entry.amount;
+                    }
+                }
+            });
+            
+            const monthlyProfit = monthlyIncome - monthlyExpenses;
+            
+            // Update UI
+            document.getElementById('monthly-income').textContent = formatINR(monthlyIncome);
+            document.getElementById('monthly-expenses').textContent = formatINR(monthlyExpenses);
+            document.getElementById('monthly-profit-display').textContent = formatINR(monthlyProfit);
+            
+            // Update monthly breakdown table
+            const tbody = document.getElementById('monthly-breakdown');
+            tbody.innerHTML = '';
+            
+            for (const category in categoryData) {
+                const data = categoryData[category];
+                const net = data.income - data.expenses;
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${category}</td>
+                    <td class="in-value">${formatINR(data.income)}</td>
+                    <td class="out-value">${formatINR(data.expenses)}</td>
+                    <td class="${net >= 0 ? 'in-value' : 'out-value'}">${net >= 0 ? '+' : ''}${formatINR(net)}</td>
+                `;
+                tbody.appendChild(row);
+            }
+            
+            // Add total row
+            const totalRow = document.createElement('tr');
+            totalRow.style.fontWeight = 'bold';
+            totalRow.style.backgroundColor = '#f8fafc';
+            totalRow.innerHTML = `
+                <td>Total</td>
+                <td class="in-value">${formatINR(monthlyIncome)}</td>
+                <td class="out-value">${formatINR(monthlyExpenses)}</td>
+                <td class="${monthlyProfit >= 0 ? 'in-value' : 'out-value'}">${monthlyProfit >= 0 ? '+' : ''}${formatINR(monthlyProfit)}</td>
+            `;
+            tbody.appendChild(totalRow);
+        }
+        
+        // Export page functionality
+        const exportBtn = document.getElementById('export-btn');
+        const printBtn = document.getElementById('print-btn');
+        const previewBtn = document.getElementById('preview-btn');
+        const exportRangeSelect = document.getElementById('export-range');
+        const previewContainer = document.getElementById('preview-container');
+        
+        // Show/hide custom export date range
+        exportRangeSelect.addEventListener('change', function() {
+            const customRangeDiv = document.getElementById('export-custom-range');
+            if (this.value === 'custom') {
+                customRangeDiv.classList.remove('d-none');
+                customRangeDiv.classList.add('d-flex');
+            } else {
+                customRangeDiv.classList.remove('d-flex');
+                customRangeDiv.classList.add('d-none');
+            }
+        });
+        
+        exportBtn.addEventListener('click', function() {
+            const format = document.getElementById('export-format').value;
+            const range = document.getElementById('export-range').value;
+            const startDate = document.getElementById('export-start-date').value;
+            const endDate = document.getElementById('export-end-date').value;
+            
+            // Filter entries based on range
+            let entriesToExport = [];
+            
+            if (range === 'all') {
+                entriesToExport = entries;
+            } else if (range === 'month') {
+                const now = new Date();
+                const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+                entriesToExport = entries.filter(entry => new Date(entry.date) >= startOfMonth);
+            } else if (range === 'quarter') {
+                const now = new Date();
+                const quarterStartMonth = Math.floor(now.getMonth() / 3) * 3;
+                const startOfQuarter = new Date(now.getFullYear(), quarterStartMonth, 1);
+                entriesToExport = entries.filter(entry => new Date(entry.date) >= startOfQuarter);
+            } else if (range === 'year') {
+                const now = new Date();
+                const startOfYear = new Date(now.getFullYear(), 0, 1);
+                entriesToExport = entries.filter(entry => new Date(entry.date) >= startOfYear);
+            } else if (range === 'custom') {
+                const start = new Date(startDate);
+                const end = new Date(endDate);
+                end.setHours(23, 59, 59, 999);
+                entriesToExport = entries.filter(entry => {
+                    const entryDate = new Date(entry.date);
+                    return entryDate >= start && entryDate <= end;
+                });
+            }
+            
+            // Sort by date (newest first)
+            entriesToExport.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            if (entriesToExport.length === 0) {
+                showNotification('No data to export for the selected range', 'error');
+                return;
+            }
+            
+            // Export based on format
+            if (format === 'csv') {
+                exportToCSV(entriesToExport, range);
+            } else if (format === 'json') {
+                exportToJSON(entriesToExport, range);
+            } else if (format === 'pdf') {
+                showNotification('PDF export would be implemented with a PDF library in a real application', 'info');
+                // In a real app, you would use a PDF library like jsPDF or pdfmake
+            }
+        });
+        
+        printBtn.addEventListener('click', function() {
+            window.print();
+        });
+        
+        previewBtn.addEventListener('click', function() {
+            const range = document.getElementById('export-range').value;
+            const startDate = document.getElementById('export-start-date').value;
+            const endDate = document.getElementById('export-end-date').value;
+            
+            // Filter entries based on range (same as export)
+            let entriesToPreview = [];
+            
+            if (range === 'all') {
+                entriesToPreview = entries;
+            } else if (range === 'month') {
+                const now = new Date();
+                const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+                entriesToPreview = entries.filter(entry => new Date(entry.date) >= startOfMonth);
+            } else if (range === 'quarter') {
+                const now = new Date();
+                const quarterStartMonth = Math.floor(now.getMonth() / 3) * 3;
+                const startOfQuarter = new Date(now.getFullYear(), quarterStartMonth, 1);
+                entriesToPreview = entries.filter(entry => new Date(entry.date) >= startOfQuarter);
+            } else if (range === 'year') {
+                const now = new Date();
+                const startOfYear = new Date(now.getFullYear(), 0, 1);
+                entriesToPreview = entries.filter(entry => new Date(entry.date) >= startOfYear);
+            } else if (range === 'custom') {
+                const start = new Date(startDate);
+                const end = new Date(endDate);
+                end.setHours(23, 59, 59, 999);
+                entriesToPreview = entries.filter(entry => {
+                    const entryDate = new Date(entry.date);
+                    return entryDate >= start && entryDate <= end;
+                });
+            }
+            
+            // Sort by date (newest first)
+            entriesToPreview.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            // Show preview
+            const tbody = document.getElementById('preview-table-body');
+            tbody.innerHTML = '';
+            
+            if (entriesToPreview.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="text-center" style="padding: 2rem; color: var(--secondary);">
+                            No data to preview for the selected range
+                        </td>
+                    </tr>
+                `;
+            } else {
+                entriesToPreview.slice(0, 10).forEach(entry => {
+                    const row = document.createElement('tr');
+                    const dateObj = new Date(entry.date);
+                    const formattedDate = dateObj.toLocaleDateString('en-IN', { 
+                        day: '2-digit', 
+                        month: 'short', 
+                        year: 'numeric' 
+                    });
+                    
+                    row.innerHTML = `
+                        <td>${formattedDate}</td>
+                        <td>${entry.description}</td>
+                        <td>${entry.category}</td>
+                        <td><span class="badge ${entry.type === 'in' ? 'badge-in' : 'badge-out'}">${entry.type === 'in' ? 'IN' : 'OUT'}</span></td>
+                        <td class="${entry.type === 'in' ? 'in-value' : 'out-value'}">${formatINR(entry.amount)}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+                
+                if (entriesToPreview.length > 10) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td colspan="5" class="text-center" style="color: var(--secondary);">
+                            ... and ${entriesToPreview.length - 10} more entries
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                }
+            }
+            
+            previewContainer.style.display = 'block';
+            previewContainer.scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        function exportToCSV(data, range) {
+            // Create CSV content
+            let csvContent = "Date,Description,Category,Type,Amount,Payment Method\n";
+            
+            data.forEach(entry => {
+                const dateObj = new Date(entry.date);
+                const formattedDate = dateObj.toLocaleDateString('en-IN', { 
+                    day: '2-digit', 
+                    month: 'short', 
+                    year: 'numeric' 
+                });
+                
+                csvContent += `"${formattedDate}","${entry.description}","${entry.category}","${entry.type}","${entry.amount}","${entry.paymentMethod}"\n`;
+            });
+            
+            // Create download link
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            const dateStr = new Date().toISOString().slice(0, 10);
+            a.href = url;
+            a.download = `financepro_${range}_${dateStr}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            showNotification(`Exported ${data.length} entries as CSV`, 'success');
+        }
+        
+        function exportToJSON(data, range) {
+            // Create JSON content
+            const exportData = {
+                exportDate: new Date().toISOString(),
+                range: range,
+                totalEntries: data.length,
+                entries: data
+            };
+            
+            const jsonContent = JSON.stringify(exportData, null, 2);
+            
+            // Create download link
+            const blob = new Blob([jsonContent], { type: 'application/json' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            const dateStr = new Date().toISOString().slice(0, 10);
+            a.href = url;
+            a.download = `financepro_${range}_${dateStr}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            showNotification(`Exported ${data.length} entries as JSON`, 'success');
+        }
+        
+        // Logout page functionality
+        const confirmLogoutBtn = document.getElementById('confirm-logout');
+        const cancelLogoutBtn = document.getElementById('cancel-logout');
+        
+        confirmLogoutBtn.addEventListener('click', logout);
+        
+        cancelLogoutBtn.addEventListener('click', function() {
+            showPage('dashboard-page');
+            navLinks.forEach(navLink => navLink.classList.remove('active'));
+            document.querySelector('[data-page="dashboard"]').classList.add('active');
+        });
+        
+        // Dashboard update functions
+        function updateDashboardStats() {
+            // Calculate today's date
+            const today = new Date().toDateString();
+            
+            // Calculate last 30 days date
+            const thirtyDaysAgo = new Date();
+            thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+            
+            // Initialize totals
+            let totalIncome = 0;
+            let totalExpenses = 0;
+            let todayIncome = 0;
+            let todayExpense = 0;
+            
+            entries.forEach(entry => {
+                const entryDate = new Date(entry.date);
+                
+                // Check if entry is within last 30 days
+                if (entryDate >= thirtyDaysAgo) {
+                    if (entry.type === 'in') {
+                        totalIncome += entry.amount;
+                    } else {
+                        totalExpenses += entry.amount;
+                    }
+                }
+                
+                // Check if entry is from today
+                if (entryDate.toDateString() === today) {
+                    if (entry.type === 'in') {
+                        todayIncome += entry.amount;
+                    } else {
+                        todayExpense += entry.amount;
+                    }
+                }
+            });
+            
+            const netProfit = totalIncome - totalExpenses;
+            const currentBalance = todayIncome - todayExpense;
+            
+            // Update UI
+            document.getElementById('total-income').textContent = formatINR(totalIncome);
+            document.getElementById('total-expenses').textContent = formatINR(totalExpenses);
+            document.getElementById('net-profit').textContent = formatINR(netProfit);
+            document.getElementById('today-income').textContent = formatINR(todayIncome);
+            document.getElementById('today-expense').textContent = formatINR(todayExpense);
+            document.getElementById('current-balance').textContent = formatINR(currentBalance);
+            document.getElementById('monthly-profit').textContent = formatINR(netProfit);
+        }
+        
+        function updateRecentTransactions() {
+            const tbody = document.getElementById('recent-transactions');
+            tbody.innerHTML = '';
+            
+            // Get recent entries (last 5)
+            const recentEntries = entries.slice(0, 5);
+            
+            if (recentEntries.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="text-center" style="padding: 2rem; color: var(--secondary);">
+                            <i class="fas fa-inbox" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                            <p>No transactions yet</p>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            recentEntries.forEach(entry => {
+                const row = document.createElement('tr');
+                const dateObj = new Date(entry.date);
+                const formattedDate = dateObj.toLocaleDateString('en-IN', { 
+                    day: '2-digit', 
+                    month: 'short', 
+                    year: 'numeric' 
+                });
+                
+                row.innerHTML = `
+                    <td>${formattedDate}</td>
+                    <td>${entry.description}</td>
+                    <td>${entry.category}</td>
+                    <td><span class="badge ${entry.type === 'in' ? 'badge-in' : 'badge-out'}">${entry.type === 'in' ? 'IN' : 'OUT'}</span></td>
+                    <td class="${entry.type === 'in' ? 'in-value' : 'out-value'}">${formatINR(entry.amount)}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+        
+        // LocalStorage functions
+        function loadEntriesFromStorage() {
+            const storedEntries = localStorage.getItem('financepro_entries');
+            if (storedEntries) {
+                entries = JSON.parse(storedEntries);
+                filteredEntries = [...entries].sort((a, b) => new Date(b.date) - new Date(a.date));
+            } else {
+                // Add some sample data if no entries exist
+             
+                
+                saveEntriesToStorage();
+                filteredEntries = [...entries];
+            }
+        }
+        
+        function saveEntriesToStorage() {
+            localStorage.setItem('financepro_entries', JSON.stringify(entries));
+        }
+        
+        // Utility functions
+        function formatINR(amount) {
+            return '₹' + Number(amount).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+        
+        function showNotification(message, type) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <div style="position: fixed; top: 90px; right: 20px; background: ${type === 'success' ? 'var(--success)' : type === 'error' ? 'var(--danger)' : 'var(--warning)'}; color: white; padding: 1rem 1.5rem; border-radius: var(--radius-sm); box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 1000; display: flex; align-items: center; gap: 10px; max-width: 400px; animation: slideIn 0.3s ease;">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+        
+        // Logout from dashboard button
+        window.logout = function() {
+            if (confirm('Are you sure you want to logout?')) {
+                sessionStorage.clear();
+                location.reload();
+            }
+        };
+    </script>
+</body>
+</html>
